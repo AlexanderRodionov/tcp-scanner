@@ -18,6 +18,7 @@ public class Main {
         /*
         Socket s;
 
+
         for (String h : parser.hosts) {
             for (Integer p : parser.ports) {
                 try {

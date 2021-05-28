@@ -26,23 +26,19 @@ public class CommandLineArgumentParser {
                 case "-h" -> {
                     i++;
                     String[] a = argv[i].split(",");
-                    for (String s : a) {
-                        if (s.contains("-")) {
-/*
-                                String[] firstAddr[] = s[0].split(".");;
-                                String[] secondAddr[] = s[1].split("-");;
-                                String[] thirdAddr[] = s[2].split("-");;
-                                String[] fourthAddr[] = s[3].split("-");;
-                                for (int first = Integer.parseInt(firstAddr[0]); first <= Integer.parseInt(firstAddr[firstAddr.length - 1]); first++)
-                                    for (int second = Integer.parseInt(secondAddr[0]); second <= Integer.parseInt(secondAddr[secondAddr.length - 1]); second++)
-                                        for (int third = Integer.parseInt(thirdAddr[0]); third <= Integer.parseInt(thirdAddr[thirdAddr.length - 1]); third++)
-                                            for (int fourth = Integer.parseInt(fourthAddr[0]); fourth <= Integer.parseInt(fourthAddr[fourthAddr.length - 1]); fourth++)
-                                                hosts.add(first + "." + second + "." + third + "." + fourth);
-
-
- */
+                    for(int n = 0; n < a.length; n++) {
+                        if(a[i].contains("-")) {
+                            String[] firstAddress = a[0].split("-");
+                            String[] secondAddress = a[1].split("-");
+                            String[] thirdAddress = a[2].split("-");
+                            String[] fourthAddress = a[3].split("-");
+                            for (int j = Integer.parseInt(firstAddress[0]); j <= Integer.parseInt(firstAddress[firstAddress.length - 1]); j++)
+                                for (int k = Integer.parseInt(secondAddress[0]); k <= Integer.parseInt(secondAddress[secondAddress.length - 1]); k++)
+                                    for (int l = Integer.parseInt(thirdAddress[0]); l <= Integer.parseInt(thirdAddress[thirdAddress.length - 1]); l++)
+                                        for (int m = Integer.parseInt(fourthAddress[0]); m <= Integer.parseInt(fourthAddress[fourthAddress.length - 1]); m++)
+                                            hosts.add(j + "." + k + "." + l + "." + m);
                         } else
-                            hosts.add(s);
+                            hosts.add(a[i]);
                     }
                 }
 

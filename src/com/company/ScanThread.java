@@ -7,7 +7,7 @@ import java.util.List;
 
 public class ScanThread implements Runnable{
 
-    private List<String> results;
+    private List<Result> results;
     private String host;
     private String port;
     private int timeOut;
@@ -37,7 +37,8 @@ public class ScanThread implements Runnable{
                  * сделать через  stringbuilder
                  */
 
-                this.results.add(this.host + ":" + this.port + "[" + status + "]");
+                System.out.println(this.host + ":" + this.port + " [" + status + "]");
+                this.results.add(new Result(host, port, status));
                 //StringBuilder sb
 
             }
@@ -48,7 +49,7 @@ public class ScanThread implements Runnable{
 
 
 
-    public ScanThread(String host, String port, int timeOut, List<String> results) {
+    public ScanThread(String host, String port, int timeOut, List<Result> results) {
         this.results = results;
         this.host = host;
         this.port = port;

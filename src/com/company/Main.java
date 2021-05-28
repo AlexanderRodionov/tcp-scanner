@@ -3,12 +3,16 @@ package com.company;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class Main {
 
     public static void main(String[] argv) throws IOException {
 
+
+/*
         Thread thread1 = new Thread();
         Thread thread2 = new Thread();
         Thread thread3 = new Thread();
@@ -18,7 +22,10 @@ public class Main {
         thread3.start();
 
 
+ */
+
         List<String> res = new ArrayList<>();
+        List<Result> results = Collections.synchronizedList(new ArrayList<>());
         //StringBuilder sb = new StringBuilder();
 
 
@@ -26,8 +33,8 @@ public class Main {
         String port = "135";
         int timeOut = 100;
 
-        ScanThread sT = new ScanThread(ip, port, timeOut, res);
-        sT.run();
+        //ScanThread sT = new ScanThread(ip, port, timeOut, res);
+        //sT.run();
 
 
         System.out.println(res);

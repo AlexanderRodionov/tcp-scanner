@@ -1,19 +1,24 @@
 package com.company;
 
+import java.util.List;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
-//import org.slf4j.Logger;
+
+// org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
 
 public class PortScanner {
-    private static final Logger logger = LoggerFactory.getLogger(PortScanner.class);
+    private static Logger LoggerFactory;
+    //private static final Logger logger = LoggerFactory.getLogger(PortScanner.class);
+    private static final Logger logger = (Logger) LoggerFactory.getLogger(String.valueOf(PortScanner.class));
     private int timeOut = 100;
     private int poolSize = 1;
 
 
 
-    public void start(String[] hosts, String[] ports, int otherPoolSize, List<Result> results) {
+    public void start(String[] hosts, String[] ports, int otherPoolSize, List<Result> results) throws InterruptedException {
         System.out.println("Start scanning...");
         logger.info("Start scanning...");
 
@@ -48,5 +53,8 @@ public class PortScanner {
         System.out.println("Completed task count " + executor.getCompletedTaskCount());
 
         executor.shutdown();
+
+        logger.info("Scanning successful " );
+        System.out.println("Scanning successful ");
     }
 }

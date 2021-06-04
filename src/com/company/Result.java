@@ -11,4 +11,10 @@ public class Result {
         this.port = port;
         this.status = status;
     }
+
+
+    @Override
+    public String toString(){
+        return this.host + ":" + this.port + " [" + this.status + "]";
+    }
 }

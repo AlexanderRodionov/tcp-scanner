@@ -1,86 +1,48 @@
 package com.company;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.logging.Logger;
+import java.security.Provider;
+import java.util.*;
+//import org.apache.log4j.PropertyConfigurator;
 
 public class Main {
 
-    public static void main(String[] argv) throws IOException {
+    private static Provider PropertyConfigurator;
+
+    public static void main(String[] argv) throws IOException, InterruptedException {
+
+        List<Result> results = Collections.synchronizedList(new ArrayList<>());
+        //StringBuilder sb = new StringBuilder();
+        CommandLineArgumentParser cap = new CommandLineArgumentParser(argv);
+        cap.parse();
+
+        String[] hosts = cap.hosts.toArray(new String[0]);
+        String[] ports = new String[cap.ports.size()];
+        for (int i = 0; i < cap.ports.size(); i++) {
+            ports[i] = cap.ports.get(i).toString();
+        }
+        int threads = cap.threads;
 
 
+        new PortScanner().start(hosts, ports, threads, results);
 /*
-        Thread thread1 = new Thread();
-        Thread thread2 = new Thread();
-        Thread thread3 = new Thread();
-
-        thread1.start();
-        thread2.start();
-        thread3.start();
+        //connecting log4j settings
+        Properties props = new Properties();
+        props.load(new FileInputStream("src/main/resources/log4j.properties"));
+        PropertyConfigurator.configure(String.valueOf(props));
 
 
  */
 
-        List<String> res = new ArrayList<>();
-        List<Result> results = Collections.synchronizedList(new ArrayList<>());
-        //StringBuilder sb = new StringBuilder();
-
-
-        String ip = "127.0.0.1";
-        String port = "135";
-        int timeOut = 100;
-
         //ScanThread sT = new ScanThread(ip, port, timeOut, res);
         //sT.run();
-
-
-        System.out.println(res);
-
-        //Client c = new Client();
-        //c.startConnection(ip, port);
-        //c.sendMessage("test msg");
-        //c.stopConnection();
-
-        //System.out.println(c.sendMessage("testmsg 2").length());
-
-
-
-
-        /*
-
-
-
-        CommandLineArgumentParser parser = new CommandLineArgumentParser(argv);
-        parser.parse();
-
-        System.out.println("\n\n");
-        System.out.println(parser.hosts);
-        System.out.println(parser.ports);
-        System.out.println(parser.threads);
-
-
-        Socket s;
-
-
-        for (String h : parser.hosts) {
-            for (Integer p : parser.ports) {
-                try {
-                    s = new Socket(h, p);
-                    System.out.println("Port open " + p + " on " + h);
-
-                } catch (IOException e) {
-                    System.out.println("!");
-
-                }
-            }
-
-        }
-
-         */
-
+//
+//
+//        System.out.println(cap.hosts);
+//        System.out.println(cap.ports);
+//        System.out.println(cap.threads);
 
 
     }

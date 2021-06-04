@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 public class PortScanner {
     private static Logger LoggerFactory;
     //private static final Logger logger = LoggerFactory.getLogger(PortScanner.class);
-    private static final Logger logger = (Logger) LoggerFactory.getLogger(String.valueOf(PortScanner.class));
+    //private static final Logger logger = (Logger) LoggerFactory.getLogger(String.valueOf(PortScanner.class));
     private int timeOut = 100;
     private int poolSize = 1;
 
@@ -20,7 +20,8 @@ public class PortScanner {
 
     public void start(String[] hosts, String[] ports, int otherPoolSize, List<Result> results) throws InterruptedException {
         System.out.println("Start scanning...");
-        logger.info("Start scanning...");
+        //Logger logger = null;
+        //logger.info("Start scanning...");
 
         poolSize = otherPoolSize;
 
@@ -46,15 +47,17 @@ public class PortScanner {
 
         executor.prestartAllCoreThreads();
         while (executor.getTaskCount() != executor.getCompletedTaskCount()) {
+            //System.err.println("count="+executor.getTaskCount()+","+executor.getCompletedTaskCount());
+            //Thread.sleep(5000);
 
         }
 
-        logger.info("Completed task count " + executor.getCompletedTaskCount());
+        //logger.info("Completed task count " + executor.getCompletedTaskCount());
         System.out.println("Completed task count " + executor.getCompletedTaskCount());
 
         executor.shutdown();
 
-        logger.info("Scanning successful " );
+        //logger.info("Scanning successful " );
         System.out.println("Scanning successful ");
     }
 }

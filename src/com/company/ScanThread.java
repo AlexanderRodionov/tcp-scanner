@@ -30,16 +30,8 @@ public class ScanThread implements Runnable{
             status = false;
         } finally {
             synchronized (this) {
-                //System.out.println(this.host + ":" + this.port + "[" + status + "]");
-                //this.results.add(new Result(host, port, status));
-
-                /**
-                 * сделать через  stringbuilder
-                 */
-
-                System.out.println(this.host + ":" + this.port + " [" + status + "]");
+                System.out.println(results.toString());
                 this.results.add(new Result(host, port, status));
-                //StringBuilder sb
 
             }
         }

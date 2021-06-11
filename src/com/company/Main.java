@@ -2,19 +2,19 @@ package com.company;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.net.Socket;
-import java.security.Provider;
+import org.apache.log4j.PropertyConfigurator;
 import java.util.*;
-//import org.apache.log4j.PropertyConfigurator;
 
 public class Main {
 
-    private static Provider PropertyConfigurator;
 
     public static void main(String[] argv) throws IOException, InterruptedException {
 
+        Properties props = new Properties();
+        props.load(new FileInputStream("src/logs/log4j.properties"));
+        PropertyConfigurator.configure(props);
+
         List<Result> results = Collections.synchronizedList(new ArrayList<>());
-        //StringBuilder sb = new StringBuilder();
         CommandLineArgumentParser cap = new CommandLineArgumentParser(argv);
         cap.parse();
 
@@ -25,26 +25,11 @@ public class Main {
         }
         int threads = cap.threads;
 
+        hosts[0] = "yandex.ru";
+
+
 
         new PortScanner().start(hosts, ports, threads, results);
-/*
-        //connecting log4j settings
-        Properties props = new Properties();
-        props.load(new FileInputStream("src/main/resources/log4j.properties"));
-        PropertyConfigurator.configure(String.valueOf(props));
-
-
- */
-
-        //ScanThread sT = new ScanThread(ip, port, timeOut, res);
-        //sT.run();
-//
-//
-//        System.out.println(cap.hosts);
-//        System.out.println(cap.ports);
-//        System.out.println(cap.threads);
-
-
     }
 
 }

@@ -12,10 +12,6 @@ public class ScanThread implements Runnable{
     private String port;
     private int timeOut;
 
-    public void scanThread() {
-
-    }
-
     @Override
     public void run() {
         System.out.println(this.host);
@@ -35,11 +31,7 @@ public class ScanThread implements Runnable{
 
             }
         }
-
-
     }
-
-
 
     public ScanThread(String host, String port, int timeOut, List<Result> results) {
         this.results = results;
